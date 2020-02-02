@@ -1,11 +1,10 @@
 import numpy as np
-import spiketraiNN.distance_binding as dst
+import distance_binding as dst
 
 
 def spike_train_distance(spike_train1, spike_train2,
                          method='victor_purpura',
                          params=None):
-
     no_param_methods = ['schreiber',
                         'isi',
                         'spike',
