@@ -1,12 +1,19 @@
 import numpy as np
+from typing import Tuple
 import spiketraiNN.distance_binding as dst
 
 
 class SpikeDistance:
-    def __init__(self, metric):
+    """Calculate spike train distance according to the metric name
+        stored in the 'metric' attribute
+    """
+    def __init__(self, metric: str) -> None:
         self.metric = metric
 
-    def initialize_metric_parameters(self, spike_train1, spike_train2, q):
+    def _initialize_metric_parameters(
+        self, spike_train1: np.ndarray, spike_train2: np.ndarray, q: float
+    ) -> Tuple[float]:
+        """Set external parameters used for metric calculation"""
         PARAMETER_FREE_METRICS = [
             'schreiber',
             'isi',
@@ -26,9 +33,11 @@ class SpikeDistance:
 
         return a_parameter, b_parameter
 
-    def compute(self, spike_train1, spike_train2, q=None):
+    def _compute(
+        self, spike_train1: np.ndarray, spike_train2: np.ndarray, q: str = None
+    ) -> float:
         distance = np.zeros(1, dtype='float64')
-        a_parameter, b_parameter = self.initialize_metric_parameters(
+        a_parameter, b_parameter = self._initialize_metric_parameters(
             spike_train1, spike_train2, q
         )
         dst.initialize_arrays(spike_train1, spike_train2, distance)
@@ -41,10 +50,17 @@ class SpikeDistance:
         dst.compute(self.metric)
         return distance[0]
 
-    def __call__(self, spike_train1, spike_train2, q=None):
-        return self.compute(spike_train1, spike_train2, q=q)
+    def __call__(
+        self, spike_train1: np.ndarray, spike_train2: np.ndarray, q: float = None
+    ) -> float:
+        return self._compute(spike_train1, spike_train2, q=q)
 
 
-def spike_train_distance(spike_train1, spike_train2, metric='isi', q=None):
+def spike_train_distance(
+    spike_train1: np.ndarray,
+    spike_train2: np.ndarray,
+    metric: str = 'isi',
+    q: float = None,
+) -> float:
     distance = SpikeDistance(metric=metric)
     return distance(spike_train1, spike_train2, q=q)
