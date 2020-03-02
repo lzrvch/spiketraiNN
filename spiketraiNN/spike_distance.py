@@ -7,6 +7,7 @@ class SpikeDistance:
     """Calculate spike train distance according to the metric name
         stored in the 'metric' attribute
     """
+
     def __init__(self, metric: str) -> None:
         self.metric = metric
 
