@@ -1,5 +1,7 @@
-import numpy as np
 from typing import Tuple
+
+import numpy as np
+
 import spiketrainn.distance_binding as dst
 
 
@@ -13,7 +15,7 @@ class SpikeDistance:
         self.safety_eps = safety_eps
 
     def _initialize_metric_parameters(
-        self, first_train: np.ndarray, second_train: np.ndarray, q: float
+            self, first_train: np.ndarray, second_train: np.ndarray, q: float
     ) -> Tuple[float]:
         """Set external parameters used for metric calculation"""
         PARAMETER_FREE_METRICS = [
@@ -35,7 +37,7 @@ class SpikeDistance:
         return a_parameter, b_parameter
 
     def _compute(
-        self, first_train: np.ndarray, second_train: np.ndarray, q: str = None
+            self, first_train: np.ndarray, second_train: np.ndarray, q: str = None
     ) -> float:
         distance = np.zeros(1, dtype='float64')
         a_parameter, b_parameter = self._initialize_metric_parameters(
@@ -52,16 +54,16 @@ class SpikeDistance:
         return distance[0]
 
     def __call__(
-        self, first_train: np.ndarray, second_train: np.ndarray, q: float = None
+            self, first_train: np.ndarray, second_train: np.ndarray, q: float = None
     ) -> float:
         return self._compute(first_train, second_train, q=q)
 
 
 def spike_train_distance(
-    first_train: np.ndarray,
-    second_train: np.ndarray,
-    metric: str = 'isi',
-    q: float = None,
+        first_train: np.ndarray,
+        second_train: np.ndarray,
+        metric: str = 'isi',
+        q: float = None,
 ) -> float:
     distance = SpikeDistance(metric=metric)
     return distance(first_train, second_train, q=q)
