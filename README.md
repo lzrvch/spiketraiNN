@@ -21,9 +21,7 @@ Available distance metrics include:
 # Installation
 
 ```
-pip install -r requirements.txt
-cd ./spiketrainn
-make
+make install
 ```
 
 # Usage
