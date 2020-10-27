@@ -2,7 +2,7 @@
 
 ### Introduction
 
-This is a Python wrapper for a variety of spike train distance functors ([C++ implementation](https://github.com/rist-ro/spike-train-metrics) as well as generic DTW distance for time series [C++ implementation](https://github.com/lemire/lbimproved/blob/master/dtw.h)).
+This is a Python wrapper for a set of spike train distance calculation routines in C++ ([used implementation](https://github.com/rist-ro/spike-train-metrics) as well as generic DTW distance for time series [C++ implementation](https://github.com/lemire/lbimproved/blob/master/dtw.h)).
 
 Available distance metrics include:
 
