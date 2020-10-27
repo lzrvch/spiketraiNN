@@ -1,8 +1,6 @@
-# spiketraiNN: a lightweight Python library for spike train distance calculation.
+## spiketraiNN: a lightweight Python library for spike train distance calculation.
 
-By [Ivan Lazarevich](https://lazarevi.ch)
-
-# Introduction
+### Introduction
 
 This is a Python wrapper for a variety of spike train distance functors ([C++ implementation](https://github.com/rist-ro/spike-train-metrics) as well as generic DTW distance for time series [C++ implementation](https://github.com/lemire/lbimproved/blob/master/dtw.h)).
 
@@ -18,13 +16,13 @@ Available distance metrics include:
   - DTW distance
 
 
-# Installation
+### Installation
 
 ```
 make install
 ```
 
-# Usage
+### Usage
 
 ```
 import numpy as np
