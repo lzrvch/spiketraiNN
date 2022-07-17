@@ -1,8 +1,8 @@
 """spiketrainn: a lightweight Python library for spike train distance calculation."""
 
-import os
-import re
 import codecs
+import os
+
 import setuptools
 
 here = os.path.abspath(os.path.dirname(__file__))
@@ -27,8 +27,8 @@ LONG_DESCRIPTION_CONTENT_TYPE = 'text/markdown'
 
 
 INSTALL_REQUIRES = [
-    'numpy==1.18.1',
-    'scikit_learn==0.22.1',
+    'numpy',
+    'scikit_learn',
     'Cython'
 ]
 

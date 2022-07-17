@@ -1,4 +1,4 @@
-#include <bits/stdc++.h> 
+#include <bits/stdc++.h>
 #include <vector>
 #include <tuple>
 #include <iostream>
@@ -68,7 +68,7 @@ double vp_measure(SPIKE_TRAIN T1, SPIKE_TRAIN T2, double q) {
 void computeVPDistance(){
     std::vector<double> T1(SpikeTrain_1, SpikeTrain_1 + nSpikes_1);
     std::vector<double> T2(SpikeTrain_2, SpikeTrain_2 + nSpikes_2);
-    distance_value[0] = vp_measure(T1, T2, parameter_a);   
+    distance_value[0] = vp_measure(T1, T2, parameter_a);
 }
 
 double srbr_measure (SPIKE_TRAIN T1, SPIKE_TRAIN T2, double a, double b) {
@@ -106,7 +106,7 @@ double srbr_measure (SPIKE_TRAIN T1, SPIKE_TRAIN T2, double a, double b) {
 void computeSrbrDistance(){
     std::vector<double> T1(SpikeTrain_1, SpikeTrain_1 + nSpikes_1);
     std::vector<double> T2(SpikeTrain_2, SpikeTrain_2 + nSpikes_2);
-    distance_value[0] = srbr_measure(T1, T2, parameter_a, parameter_b);   
+    distance_value[0] = srbr_measure(T1, T2, parameter_a, parameter_b);
 }
 
 double k_isi_measure (SPIKE_TRAIN T1, SPIKE_TRAIN T2, double a, double b) {
@@ -155,13 +155,13 @@ double k_isi_measure (SPIKE_TRAIN T1, SPIKE_TRAIN T2, double a, double b) {
 void computeISIDistance(){
     std::vector<double> T1(SpikeTrain_1, SpikeTrain_1 + nSpikes_1);
     std::vector<double> T2(SpikeTrain_2, SpikeTrain_2 + nSpikes_2);
-    distance_value[0] = k_isi_measure(T1, T2, parameter_a, parameter_b);   
+    distance_value[0] = k_isi_measure(T1, T2, parameter_a, parameter_b);
 }
 
 double k_spk_measure (SPIKE_TRAIN T1, SPIKE_TRAIN T2, double a, double b) {
     //T1 and T2 are ordered, nonempty sets of real numbers, indexed starting from 0.
     //T1 does not contain overlapping spikes, nor does T2
-  //a < T1,2[i] and b > T1,2[i].
+    //a < T1,2[i] and b > T1,2[i].
     double dt = 1; //the integration timestep
     double dS = 0, S = 0, S_1 = 0, S_2 = 0;
 
@@ -201,11 +201,10 @@ double k_spk_measure (SPIKE_TRAIN T1, SPIKE_TRAIN T2, double a, double b) {
         delta_t_F_2 = b - a;
         delta_t_P_2 = b - a;
 
-
-        for (unsigned int i = i2; i >= 0 && fabs(T1[i1-1] - T2[i])  < delta_t_P_1; delta_t_P_1 = fabs(T1[i1-1] - T2[i]), --i);
-        for (unsigned int i = i2 - 1; i < n2 && fabs(T1[i1] - T2[i])  < delta_t_F_1; delta_t_F_1 = fabs(T1[i1] - T2[i]), ++i);
-        for (unsigned int i = i1; i >= 0 && fabs(T2[i2-1] - T1[i])  < delta_t_P_2; delta_t_P_2 = fabs(T2[i2-1] - T1[i]), --i);
-        for (unsigned int i = i1 - 1; i < n1 && fabs(T2[i2] - T1[i])  < delta_t_F_2; delta_t_F_2 = fabs(T2[i2] - T1[i]), ++i);
+        for (int i = i2; i >= 0 && fabs(T1[i1-1] - T2[i])  < delta_t_P_1; delta_t_P_1 = fabs(T1[i1-1] - T2[i]), --i);
+        for (int i = i2 - 1; i < n2 && fabs(T1[i1] - T2[i])  < delta_t_F_1; delta_t_F_1 = fabs(T1[i1] - T2[i]), ++i);
+        for (int i = i1; i >= 0 && fabs(T2[i2-1] - T1[i])  < delta_t_P_2; delta_t_P_2 = fabs(T2[i2-1] - T1[i]), --i);
+        for (int i = i1 - 1; i < n1 && fabs(T2[i2] - T1[i])  < delta_t_F_2; delta_t_F_2 = fabs(T2[i2] - T1[i]), ++i);
 
         x_P_1 = t - T1[i1-1]; x_P_2 = t - T2[i2-1];
         x_F_1 = T1[i1] - t; x_F_2 = T2[i2] - t;
@@ -224,7 +223,7 @@ double k_spk_measure (SPIKE_TRAIN T1, SPIKE_TRAIN T2, double a, double b) {
 void computeSPIKEDistance(){
     std::vector<double> T1(SpikeTrain_1, SpikeTrain_1 + nSpikes_1);
     std::vector<double> T2(SpikeTrain_2, SpikeTrain_2 + nSpikes_2);
-    distance_value[0] = k_spk_measure(T1, T2, parameter_a, parameter_b);   
+    distance_value[0] = k_spk_measure(T1, T2, parameter_a, parameter_b);
 }
 
 double vr_measureOP (SPIKE_TRAIN T1, SPIKE_TRAIN T2, double a, double b) {
@@ -270,7 +269,7 @@ double vr_measureOP (SPIKE_TRAIN T1, SPIKE_TRAIN T2, double a, double b) {
 void computeVRDistance(){
     std::vector<double> T1(SpikeTrain_1, SpikeTrain_1 + nSpikes_1);
     std::vector<double> T2(SpikeTrain_2, SpikeTrain_2 + nSpikes_2);
-    distance_value[0] = vr_measureOP(T1, T2, parameter_a, parameter_b);   
+    distance_value[0] = vr_measureOP(T1, T2, parameter_a, parameter_b);
 }
 
 
@@ -336,14 +335,14 @@ double dm_measure (SPIKE_TRAIN T1, SPIKE_TRAIN T2, double a, double b) {
 void computeMaxMetricDistance(){
     std::vector<double> T1(SpikeTrain_1, SpikeTrain_1 + nSpikes_1);
     std::vector<double> T2(SpikeTrain_2, SpikeTrain_2 + nSpikes_2);
-    distance_value[0] = dm_measure(T1, T2, parameter_a, parameter_b);   
+    distance_value[0] = dm_measure(T1, T2, parameter_a, parameter_b);
 }
 
 void computeDTWDistance(){
     std::vector<double> T1(SpikeTrain_1, SpikeTrain_1 + nSpikes_1);
     std::vector<double> T2(SpikeTrain_2, SpikeTrain_2 + nSpikes_2);
-    LB_Improved filter(T1, nSpikes_1 / 10); 
-    distance_value[0] = filter.test(T2);   
+    LB_Improved filter(T1, nSpikes_1 / 10);
+    distance_value[0] = filter.test(T2);
 }
 
 
@@ -491,5 +490,5 @@ double do_measure_optimal (SPIKE_TRAIN T1, SPIKE_TRAIN T2, double a, double b) {
 void computeModulusMetricDistance(){
     std::vector<double> T1(SpikeTrain_1, SpikeTrain_1 + nSpikes_1);
     std::vector<double> T2(SpikeTrain_2, SpikeTrain_2 + nSpikes_2);
-    distance_value[0] = do_measure_optimal(T1, T2, parameter_a, parameter_b);   
+    distance_value[0] = do_measure_optimal(T1, T2, parameter_a, parameter_b);
 }
